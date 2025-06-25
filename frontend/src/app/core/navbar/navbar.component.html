@@ -1,0 +1,33 @@
+<nav>
+  <a class="navbar-brand" routerLink="/">
+    <i class="fa fa-gem"></i> Shopie
+  </a>
+  <div class="navbar-links left-links">
+    <button mat-icon-button routerLink="/shop" aria-label="Shop">
+      <mat-icon>store</mat-icon>
+    </button>
+  </div>
+  <div class="navbar-links category-links">
+    <ng-container *ngFor="let cat of categories">
+      <button mat-button [class.active-category]="selectedCategory === cat.value" (click)="selectCategory(cat.value)">{{ cat.label }}</button>
+    </ng-container>
+  </div>
+  <div class="navbar-links right-links" *ngIf="user$ | async as user; else loggedOut">
+    <button mat-icon-button routerLink="/shop/cart" aria-label="Cart">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+    <ng-container *ngIf="user.role?.toLowerCase() === 'admin'">
+      <button mat-button routerLink="/admin/dashboard">Admin</button>
+      <a mat-button routerLink="/admin/product-create">Add Product</a>
+    </ng-container>
+    <button mat-button (click)="logout()">Logout</button>
+  </div>
+  <ng-template #loggedOut>
+    <div class="navbar-links right-links">
+      <button mat-icon-button routerLink="/shop/cart" aria-label="Cart">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+      <button mat-button routerLink="/auth/login">Login</button>
+    </div>
+  </ng-template>
+</nav>

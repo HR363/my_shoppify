@@ -1,0 +1,39 @@
+<div class="container p-4 mx-auto">
+  <h2 class="mb-6 text-2xl font-bold">Edit Product</h2>
+  <form *ngIf="product" (ngSubmit)="onSubmit()" #productForm="ngForm" class="p-8 space-y-6 bg-white rounded-lg shadow-md">
+    <div>
+      <label for="name" class="block text-sm font-medium text-gray-700">Product Name</label>
+      <input type="text" id="name" name="name" required [(ngModel)]="product.name"
+             class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+    </div>
+    <div>
+      <label for="shortDescription" class="block text-sm font-medium text-gray-700">Short Description</label>
+      <textarea id="shortDescription" name="shortDescription" required [(ngModel)]="product.shortDescription"
+                class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+    </div>
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div>
+        <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+        <input type="number" id="price" name="price" required [(ngModel)]="product.price"
+               class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+      <div>
+        <label for="stockQuantity" class="block text-sm font-medium text-gray-700">Stock Quantity</label>
+        <input type="number" id="stockQuantity" name="stockQuantity" required [(ngModel)]="product.stockQuantity"
+               class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+    </div>
+    <div>
+      <label for="image" class="block text-sm font-medium text-gray-700">Product Image</label>
+      <input type="file" id="image" (change)="onFileSelected($event)"
+             class="w-full px-3 py-2 mt-1 border border-gray-300 rounded-md">
+      <div *ngIf="imagePreview" class="mt-4">
+        <img [src]="imagePreview" class="w-32 h-32 rounded-md">
+      </div>
+    </div>
+    <button type="submit" [disabled]="!productForm.form.valid || isUploading"
+            class="w-full px-4 py-2 font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50">
+      {{ isUploading ? 'Uploading...' : 'Update Product' }}
+    </button>
+  </form>
+</div> 

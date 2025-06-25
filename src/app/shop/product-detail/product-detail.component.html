@@ -1,0 +1,29 @@
+<div class="container p-4 mx-auto">
+  <div *ngIf="isLoading" class="flex items-center justify-center">
+    <p>Loading product...</p>
+  </div>
+
+  <div *ngIf="product" class="grid grid-cols-1 gap-8 md:grid-cols-2">
+    <div>
+      <img [src]="product.imageUrl" [alt]="product.name" class="w-full rounded-lg shadow-md">
+    </div>
+    <div>
+      <h2 class="text-3xl font-bold">{{ product.name }}</h2>
+      <p class="mt-4 text-gray-700">{{ product.shortDescription }}</p>
+      <div class="mt-4">
+        <span class="text-2xl font-bold">{{ product.price | currency }}</span>
+      </div>
+      <div class="mt-6">
+        <button (click)="addToCart()" 
+                [disabled]="product.stockQuantity === 0"
+                class="px-6 py-3 font-semibold text-white bg-indigo-600 rounded-md hover:bg-indigo-700 disabled:bg-gray-400">
+          {{ product.stockQuantity === 0 ? 'Out of Stock' : 'Add to Cart' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading && !product" class="text-center">
+    <p>Product not found.</p>
+  </div>
+</div> 

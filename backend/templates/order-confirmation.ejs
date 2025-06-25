@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Order Confirmation</title>
+  </head>
+  <body>
+    <h2>Thank you for your order!</h2>
+    <p>Your order has been received and is being processed.</p>
+    <h3>Order Details:</h3>
+    <ul>
+      <% items.forEach(function(item) { %>
+        <li>
+          <strong><%= item.product.name %></strong> - Quantity: <%= item.quantity %> - Price: $<%= item.product.price %>
+        </li>
+      <% }); %>
+    </ul>
+    <p><strong>Total: $<%= total %></strong></p>
+    <p>We appreciate your business!<br/>The Shopie Team</p>
+  </body>
+</html> 

@@ -1,0 +1,66 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 2.5rem 0;
+  padding: 0 1.5rem;
+}
+
+.product-card {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  animation: cardFadeIn 0.7s cubic-bezier(.4,2,.6,1);
+}
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+.product-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+}
+mat-card-content {
+  padding: 1rem 1.2rem;
+  text-align: left;
+}
+mat-card-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0;
+}
+.product-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+.product-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #c2b280;
+}
+.in-stock {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #388e3c;
+}
+.out-of-stock {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #d32f2f;
+}
+
+.center, .success, .error {
+  text-align: center;
+  padding: 2rem;
+}
+@keyframes cardFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

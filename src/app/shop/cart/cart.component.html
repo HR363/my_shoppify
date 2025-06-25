@@ -1,0 +1,32 @@
+<div class="container p-4 mx-auto">
+  <h2 class="mb-6 text-2xl font-bold">Your Cart</h2>
+  
+  <div *ngIf="isLoading" class="flex items-center justify-center">
+    <p>Loading cart...</p>
+  </div>
+
+  <div *ngIf="!isLoading && (!cart || cart.items.length === 0)" class="text-center">
+    <p>Your cart is empty.</p>
+    <a routerLink="/shop" class="mt-4 text-indigo-600 hover:underline">Continue Shopping</a>
+  </div>
+
+  <div *ngIf="cart && cart.items.length > 0">
+    <div *ngFor="let item of cart.items" class="flex items-center justify-between p-4 mb-4 bg-white rounded-lg shadow-md">
+      <div class="flex items-center">
+        <img [src]="item.product.imageUrl" [alt]="item.product.name" class="w-16 h-16 mr-4 rounded">
+        <div>
+          <h3 class="font-semibold">{{ item.product.name }}</h3>
+          <p class="text-gray-600">{{ item.product.price | currency }}</p>
+        </div>
+      </div>
+      <div class="flex items-center">
+        <input type="number" [value]="item.quantity" (change)="updateQuantity(item.id, $event)" class="w-16 p-2 text-center border rounded">
+        <button (click)="removeItem(item.id)" class="ml-4 text-red-500 hover:text-red-700">Remove</button>
+      </div>
+    </div>
+
+    <div class="mt-6 text-right">
+      <p class="text-xl font-bold">Total: {{ total | currency }}</p>
+    </div>
+  </div>
+</div> 

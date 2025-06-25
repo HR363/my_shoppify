@@ -1,0 +1,140 @@
+### Set base URL
+@baseUrl = http://localhost:3000
+
+### AUTH
+# Register
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Test User",
+  "email": "testuser@example.com",
+  "password": "password123"
+}
+
+# Login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "fx363corp@gmail.com",
+  "password": "harry123"
+}
+
+# Request Password Reset
+POST {{baseUrl}}/auth/request-reset
+Content-Type: application/json
+
+{
+  "email": "testuser@example.com"
+}
+
+# Reset Password
+POST {{baseUrl}}/auth/reset-password
+Content-Type: application/json
+
+{
+  "token": "<RESET_TOKEN>",
+  "newPassword": "newpassword123"
+}
+
+### USERS
+# Get current user profile
+GET {{baseUrl}}/users/me
+Authorization: Bearer <JWT_TOKEN>
+
+# Update current user profile
+PATCH {{baseUrl}}/users/me
+Authorization: Bearer <JWT_TOKEN>
+Content-Type: application/json
+
+{
+  "name": "Updated User"
+}
+
+# Admin: Get user by ID
+GET {{baseUrl}}/users/<USER_ID>
+Authorization: Bearer <ADMIN_JWT_TOKEN>
+
+# Admin: List all users
+GET {{baseUrl}}/users
+Authorization: Bearer <ADMIN_JWT_TOKEN>
+
+# Admin: Update user role
+PATCH {{baseUrl}}/users/<USER_ID>/role
+Authorization: Bearer <ADMIN_JWT_TOKEN>
+Content-Type: application/json
+
+{
+  "role": "ADMIN"
+}
+
+### PRODUCTS
+# List products
+GET {{baseUrl}}/products
+
+# Search products
+GET {{baseUrl}}/products/search?q=Test
+
+# Get product by ID
+GET {{baseUrl}}/products/<PRODUCT_ID>
+
+# Admin: Create product
+POST {{baseUrl}}/products
+Authorization: Bearer <ADMIN_JWT_TOKEN>
+Content-Type: application/json
+
+{
+  "name": "Test Product",
+  "shortDescription": "A test product.",
+  "price": 19.99,
+  "imageUrl": "https://via.placeholder.com/150",
+  "stockQuantity": 10
+}
+
+# Admin: Update product
+PATCH {{baseUrl}}/products/<PRODUCT_ID>
+Authorization: Bearer <ADMIN_JWT_TOKEN>
+Content-Type: application/json
+
+{
+  "price": 24.99
+}
+
+# Admin: Delete product
+DELETE {{baseUrl}}/products/<PRODUCT_ID>
+Authorization: Bearer <ADMIN_JWT_TOKEN>
+
+# Admin: Upload product image (use a REST client that supports file upload)
+# POST {{baseUrl}}/products/upload-image
+# Authorization: Bearer <ADMIN_JWT_TOKEN>
+# Content-Type: multipart/form-data
+# file=@/path/to/image.jpg
+
+### CART
+# Add to cart
+POST {{baseUrl}}/cart
+Authorization: Bearer <JWT_TOKEN>
+Content-Type: application/json
+
+{
+  "productId": "<PRODUCT_ID>",
+  "quantity": 2
+}
+
+# View cart
+GET {{baseUrl}}/cart
+Authorization: Bearer <JWT_TOKEN>
+
+# Update cart item quantity
+PATCH {{baseUrl}}/cart/<CART_ITEM_ID>
+Authorization: Bearer <JWT_TOKEN>
+Content-Type: application/json
+
+{
+  "quantity": 3
+}
+
+# Remove cart item
+DELETE {{baseUrl}}/cart/<CART_ITEM_ID>
+Authorization: Bearer <JWT_TOKEN> 

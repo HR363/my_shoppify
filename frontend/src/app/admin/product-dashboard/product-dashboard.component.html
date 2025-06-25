@@ -1,0 +1,47 @@
+<mat-sidenav-container class="dashboard-container">
+  <mat-sidenav mode="side" opened class="dashboard-sidenav">
+    <div class="sidenav-header">Shop Admin</div>
+    <nav>
+      <a mat-list-item routerLink="/admin/dashboard" routerLinkActive="active"><mat-icon>dashboard</mat-icon> Dashboard</a>
+      <a mat-list-item routerLink="/admin/products" routerLinkActive="active"><mat-icon>inventory_2</mat-icon> Products</a>
+      <a mat-list-item routerLink="/admin/orders" routerLinkActive="active"><mat-icon>shopping_cart</mat-icon> Orders</a>
+      <a mat-list-item routerLink="/admin/users" routerLinkActive="active"><mat-icon>group</mat-icon> Users</a>
+      <a mat-list-item routerLink="/admin/settings" routerLinkActive="active"><mat-icon>settings</mat-icon> Settings</a>
+    </nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="dashboard-toolbar">
+      <span>Admin Dashboard</span>
+      <span class="spacer"></span>
+      <mat-icon>account_circle</mat-icon>
+    </mat-toolbar>
+    <div class="dashboard-main">
+      <div class="dashboard-cards">
+        <mat-card class="dashboard-card animate-card">
+          <mat-card-title>Total Products</mat-card-title>
+          <mat-card-content>
+            <div class="card-value">128</div>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="dashboard-card animate-card">
+          <mat-card-title>Total Orders</mat-card-title>
+          <mat-card-content>
+            <div class="card-value">542</div>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="dashboard-card animate-card">
+          <mat-card-title>Total Users</mat-card-title>
+          <mat-card-content>
+            <div class="card-value">1,234</div>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="dashboard-card animate-card">
+          <mat-card-title>Revenue</mat-card-title>
+          <mat-card-content>
+            <div class="card-value">$12,345</div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

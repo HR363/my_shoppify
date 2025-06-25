@@ -1,0 +1,47 @@
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>Define Your Style</h1>
+    <p>The finest collection of modern fashion</p>
+    <button mat-raised-button routerLink="/auth/login">Shop Now</button>
+  </div>
+</div>
+
+<div class="page-section categories">
+  <h2 class="section-title">Explore Our Collections</h2>
+  <div class="grid">
+    <mat-card class="category-card" *ngFor="let cat of categories">
+      <img [src]="cat.img" [alt]="cat.title" />
+      <div class="cat-info">
+        <h2>{{ cat.title }}</h2>
+        <p>{{ cat.desc }}</p>
+        <button mat-stroked-button color="primary" routerLink="/auth/login">Shop {{ cat.title }}</button>
+      </div>
+    </mat-card>
+  </div>
+</div>
+
+<div class="page-section featured">
+  <h2 class="section-title">Featured Products</h2>
+  <div class="featured-grid">
+    <mat-card class="product-card" *ngFor="let prod of featuredProducts">
+      <img [src]="prod.img" [alt]="prod.name" />
+      <div class="prod-info">
+        <h3>{{ prod.name }}</h3>
+        <p>{{ prod.desc }}</p>
+        <button mat-button color="primary" routerLink="/auth/login">View Details</button>
+      </div>
+    </mat-card>
+  </div>
+</div>
+
+<div class="page-section value-props">
+  <h2 class="section-title">Why Shop With Us?</h2>
+  <div class="value-props-grid">
+    <mat-card class="info-card" *ngFor="let v of valueProps">
+      <i class="icon fa {{ v.icon }}"></i>
+      <h4>{{ v.title }}</h4>
+      <p>{{ v.desc }}</p>
+    </mat-card>
+  </div>
+</div> 

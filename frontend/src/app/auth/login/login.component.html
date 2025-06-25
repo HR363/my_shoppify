@@ -1,0 +1,32 @@
+<form [formGroup]="loginForm" (ngSubmit)="submit()" class="login-form">
+  <div class="logo-area">
+    <img src="/assets/shopie_logo.png" alt="Shopie Logo" />
+  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" type="email" required>
+    <mat-error *ngIf="loginForm.get('email')?.hasError('required')">Email is required</mat-error>
+    <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Invalid email</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password" type="password" required>
+    <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Password is required</mat-error>
+  </mat-form-field>
+
+  <div class="forgot-password-link">
+    <a routerLink="/auth/reset-password">Forgot Password?</a>
+  </div>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="loading || loginForm.invalid">
+    {{ loading ? 'Logging in...' : 'Login' }}
+  </button>
+
+  <div class="register-link">
+    <span>Don't have an account?</span>
+    <a routerLink="/auth/register">Register</a>
+  </div>
+</form>

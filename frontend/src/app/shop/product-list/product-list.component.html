@@ -1,0 +1,33 @@
+<div *ngIf="success" class="success">{{ success }}</div>
+<div *ngIf="loading" class="center">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="error && !loading" class="center">
+  <p>{{ error }}</p>
+</div>
+<div *ngIf="!loading && !error && products.length === 0" class="center">
+  <p>No products found.</p>
+</div>
+<div *ngIf="!loading && !error && products.length > 0" class="product-grid">
+  <mat-card *ngFor="let product of products" class="product-card" (click)="openProductDialog(product)">
+    <img mat-card-image [src]="product.imageUrl" [alt]="product.name">
+    <mat-card-content>
+      <mat-card-title>{{ product.name }}</mat-card-title>
+      <div class="product-info">
+        <span class="product-price">${{ product.price }}</span>
+        <span *ngIf="product.stockQuantity > 0" class="in-stock">In Stock</span>
+        <span *ngIf="product.stockQuantity === 0" class="out-of-stock">Out of Stock</span>
+      </div>
+    </mat-card-content>
+    <button
+      *ngIf="user?.role === 'ADMIN'"
+      mat-icon-button
+      color="warn"
+      (click)="deleteProduct(product); $event.stopPropagation()"
+      aria-label="Remove product"
+      class="remove-btn"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card>
+</div>

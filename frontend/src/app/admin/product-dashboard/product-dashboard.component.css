@@ -1,0 +1,107 @@
+.dashboard-container {
+  height: 100vh;
+}
+
+.dashboard-sidenav {
+  width: 220px;
+  background: #ede6d6;
+  color: #333;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+  padding-top: 16px;
+}
+.sidenav-header {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 24px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+.dashboard-sidenav nav a {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: #333;
+  text-decoration: none;
+  border-radius: 6px;
+  margin: 4px 8px;
+  transition: background 0.2s, color 0.2s;
+  font-size: 1.05rem;
+}
+.dashboard-sidenav nav a.active, .dashboard-sidenav nav a:hover {
+  background: #c2b280;
+  color: #fff;
+}
+.dashboard-sidenav mat-icon {
+  margin-right: 12px;
+}
+.dashboard-toolbar {
+  background: #c2b280;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.spacer {
+  flex: 1 1 auto;
+}
+.dashboard-main {
+  padding: 32px 24px;
+  background: #f8f6f0;
+  min-height: calc(100vh - 64px);
+}
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 32px;
+}
+.dashboard-card {
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  border-radius: 16px;
+  background: #fff;
+  transition: transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: cardIn 0.7s cubic-bezier(.4,2,.6,1) forwards;
+}
+.dashboard-card:hover {
+  transform: scale(1.04) translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+}
+.card-value {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-top: 8px;
+  color: #c2b280;
+}
+@keyframes cardIn {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 800px) {
+  .dashboard-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .dashboard-main {
+    padding: 16px 4px;
+  }
+  .dashboard-sidenav {
+    width: 60px;
+    padding-top: 8px;
+  }
+  .sidenav-header {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+  .dashboard-sidenav nav a {
+    font-size: 0.95rem;
+    padding: 10px 8px;
+    margin: 2px 2px;
+  }
+}
